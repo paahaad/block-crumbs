@@ -1,4 +1,5 @@
--- 1. Fee Landscape (per slot)
+-- 1. Fee Landscape
+-- Breakdown of total fees, base fees, priority fees, and Jito tips per slot (in SOL)
 SELECT 
     slot,
     total_fees / 1e9 as total_fees_sol,
@@ -9,7 +10,8 @@ FROM block_stats
 ORDER BY slot DESC
 LIMIT 10;
 
--- 2. Jito Status (per slot)
+-- 2. Jito Status
+-- Count of Jito vs non-Jito transactions and Jito bundle percentage per slot
 SELECT 
     slot,
     jito_bundle_count as jito_txs,
@@ -19,7 +21,8 @@ FROM block_stats
 ORDER BY slot DESC
 LIMIT 10;
 
--- 3. CU Utilization (per slot)
+-- 3. CU Utilization
+-- Compute units consumed vs requested per slot to measure CU efficiency
 SELECT 
     slot,
     sum(cu_consumed) as total_cu_used,
@@ -31,6 +34,7 @@ GROUP BY slot
 ORDER BY slot;
 
 -- 4. Block Summary
+-- High-level block stats including tx counts, Jito bundles, and total fees
 SELECT 
     slot,
     total_tx,
