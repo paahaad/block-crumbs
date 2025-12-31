@@ -1,0 +1,27 @@
+[package]
+name = "block_crumbs"
+version = "0.1.0"
+edition = "2021"  # Fixed: "2024" is not valid
+
+[dependencies]
+# All carbon crates from the same git source
+carbon-core = { git = "https://github.com/sevenlabs-hq/carbon", branch = "main" }
+carbon-rpc-block-crawler-datasource = { git = "https://github.com/sevenlabs-hq/carbon", branch = "main" }
+carbon-log-metrics = { git = "https://github.com/sevenlabs-hq/carbon", branch = "main" }
+
+solana-commitment-config = "^3.0.0"
+solana-instruction = { version = "^3.0.0", default-features = false }
+solana-pubkey = { version = "^3.0.0", features = ["serde", "borsh", "curve25519"] }
+solana-transaction-status = "^3.0.0"
+solana-client = "3.1.5"
+clickhouse = { version = "0.13.3", features = ["lz4"] }
+
+
+async-trait = "0.1.89"
+tokio = { version = "1.48.0", features = ["full"] }
+chrono = "0.4.42"
+dotenv = "0.15.0"
+log = "0.4.29"
+env_logger = "0.11.8"
+serde = "1.0.228"
+borsh = "1.5.7"

@@ -1,0 +1,28 @@
+# Single instance of clickhouse
+version: '3.8'
+services:
+  clickhouse:
+    image: 'clickhouse/clickhouse-server'
+    user: '101:101'
+    container_name: clickhouse
+    privileged: true #unsecure
+    hostname: clickhouse
+    volumes:
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/config.d/config.xml:/etc/clickhouse-server/config.d/config.xml
+      - ./fs/volumes/clickhouse/etc/clickhouse-server/users.d/user.xml:/etc/clickhouse-server/users.d/user.xml
+    ports:
+      - '127.0.0.1:8123:8123'
+      - '127.0.0.1:9000:9000'
+    depends_on:
+      - clickhouse-keeper
+
+  clickhouse-keeper: # Single keeper service (clickhouse-keeper is like zookeeper)
+    image: 'clickhouse/clickhouse-keeper'
+    user: '101:101'
+    container_name: clickhouse-keeper
+    hostname: clickhouse-keeper
+    privileged: true #unsecure
+    volumes:
+      - ./fs/volumes/clickhouse-keeper/etc/clickhouse-keeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml
+    ports:
+      - '127.0.0.1:9181:9181'
