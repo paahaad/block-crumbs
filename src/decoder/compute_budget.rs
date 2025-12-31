@@ -75,7 +75,7 @@ impl ComputeBudgetInfo {
         }
     }
 
-    #[warn(dead_code)]
+    #[allow(dead_code)]
     pub fn priority_fee_from_meta(total_fee: u64, num_signatures: u64) -> u64 {
         let base_fee = 5000 * num_signatures;
         total_fee.saturating_sub(base_fee)

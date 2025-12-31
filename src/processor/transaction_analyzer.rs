@@ -62,7 +62,7 @@ impl TransactonAnaylzer {
 
             instructions.push( Instruction { 
                 program_id: *program_id, 
-                accounts: accounts, 
+                accounts, 
                 data: compiled_ix.data.clone()
             });
         }
