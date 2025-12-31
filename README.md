@@ -22,7 +22,7 @@ cargo run
 ## Schema Design
 
 **Why two tables?**
-- **Transactions** — granular per-tx data for detailed analysis (fee breakdown, Jito detection, landing method)
+- **Transactions** — granular per-tx data for detailed analysis (fee breakdown, Jito detection, cu limit, tx omplexity )
 - **Block Stats** — pre-aggregated block-level metrics to avoid expensive `GROUP BY slot` queries at read time
 
 **1. Transactions Table**
